@@ -1,0 +1,18 @@
+<table class="table table-condensed table-hover">
+  <thead class="thead-inverse">
+    <tr>
+      <th>meal <button class="btn btn-xs btn-info" ng-click="order = 'meal'">Filter by</button></th>
+      <th>calories <button class="btn btn-xs btn-info" ng-click="order = 'calories'">Filter by</button></th>
+      <th>date <button class="btn btn-xs btn-info" ng-click="order = 'date'">Filter by</button></th>
+      <th class="text-center">delete</th>
+    </tr>
+  </thead>
+  <tbody class="db-container">
+    <tr ng-repeat="meal in meals | orderBy: order | filter: search" >
+      <td class="meal"> {{meal.name}} </td>
+      <td class="calories"> {{meal.calories}} </td>
+      <td class="date"> {{meal.date | date}} </td>
+      <td class="delete"><button type="button" ng-click="deleteMeal(meal)" class="delete btn btn-block" aria-label="Delete"><span aria-hidden="true">&times;</span></button></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="CalorieCounter">
+  <head>
+    <title>Aqua-marine's calorie counter app</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="./content/favicon.png"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script src="./app/app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+  </head>
+  <body ng-controller="AppController">
+    <header ng-include="'header.html'"></header>
+    <!--<main ng-view></main> -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>CalorieCounter</h1>
+        <p>Log your meals, sum their calories</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <form class="form-inline" ng-submit="addMeal()">
+        <div class="form-group">
+          <label for="meals">meal</label>
+          <input type="text"class="form-control" placeholder="eg. veggies, meat, bread" ng-model="newMeal.name" ng-required="true">
+        </div>
+        <div class="form-group">
+          <label for="calories">calories</label>
+          <input type="number" class="form-control" placeholder="eg. 120" min="1" ng-model="newMeal.calories" ng-required="true">
+        </div>
+        <div class="form-group">
+          <label for="date">date</label>
+          <input type="date" class="form-control" placeholder="2016. 02. 31." ng-model="newMeal.date" ng-required="true">
+        </div>
+        <button type="submit" class="btn btn-default">Add meal</button>
+      </form>
+    </div>
+    <br>
+    <div class="container">
+      <h2><span class="label label-primary">Your stored meals</span></h2>
+    </div>
+    <br>
+    <div class="container input-group">
+      <input type="text" ng-model="search" class="form-control" placeholder="Search"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="reload()">Clear</button>
+      </span>
+    </div>
+    <br>
+    <div class="container">
+      <meal-table></meal-table>
+    </div>
+    <br>
+    <div class="container">
+      <h3 ng-show="getSum()">Total calories consumed: <span class="label label-primary">{{getSum()}}</span> kcal</h3>
+    </div>
+    <br>
+    <div class="container-fluid">
+     <footer class="footer text-center">
+       <p class="small">aquamarine team's calorie counter</p>
+     </footer>
+    </div>
+  </body>
+</html>
